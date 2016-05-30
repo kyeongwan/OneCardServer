@@ -19,7 +19,7 @@ public class RestVerticle extends AbstractVerticle {
 	EventBus eventBus;
 	
     Object reqClasses[][] = new Object[][]{
-//    		{"/user/login", api.LoginAPI.class, "POST"},
+    		{"/user/login", api.LoginAPI.class, "GET"},
     		{"/user/join", api.JoinAPI.class, "GET"},
 //    		{"/user/registApp", com.soma.ggamtalk.api.RegistAppAPI.class, "GET"},
 //    		{"/user/listApp", com.soma.ggamtalk.api.ListAppAPI.class, "GET"},
