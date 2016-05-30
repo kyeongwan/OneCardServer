@@ -12,4 +12,11 @@ public class Test extends AbstractVerticle {
         v.deployVerticle(new DBVerticle());
         v.deployVerticle(new ChatVerticle());
     }
+
+    public void start(){
+        Vertx v = Vertx.vertx();
+        v.deployVerticle(new HttpServerVertical());
+        v.deployVerticle(new DBVerticle());
+        v.deployVerticle(new ChatVerticle());
+    }
 }
