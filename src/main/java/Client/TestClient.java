@@ -10,7 +10,7 @@ public class TestClient {
 
         //String body = "name=강경완&email=lk@lemonlab.co.6&password=adad&phonenumber=010-0000-7&gcmtoken=fdafsd";
         String body = "{\"user_id\":\"fff\"}";
-        request.post("http://127.0.0.1:7010/user/join?user_id=aaaa@aaa&user_pw=" + URLEncoder.encode("마마마마마", "UTF-8"), body, "UTF-8", new Request() {
+        request.post("http://127.0.0.1:7010/user/join?user_id=aaaa@aaa&user_pw=fdsadsf&nick_name=" + URLEncoder.encode("마마마마마", "UTF-8"), body, "UTF-8", new Request() {
             @Override
             public void onSuccess(String receiveData) {
                 System.out.println(receiveData);
