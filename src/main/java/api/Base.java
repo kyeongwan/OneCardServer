@@ -1,7 +1,10 @@
 package api;
 
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
+import io.vertx.core.eventbus.Message;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.json.JsonObject;
 
@@ -22,4 +25,5 @@ public abstract class Base {
         param.forEach(entry -> params.put(entry.getKey(), entry.getValue()));
 
     }
+
 }

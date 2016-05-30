@@ -11,13 +11,12 @@ import io.vertx.core.json.JsonObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class JoinAPI extends Base{
+public class JoinAPI extends Base {
     //TODO 세션 시간 설정
     //String token = "";
 
     public JoinAPI() {
     }
-
 
 
     public void execute(Vertx vertx, HttpServerRequest request) {
@@ -31,20 +30,6 @@ public class JoinAPI extends Base{
         String query = String.format("SELECT * FROM user WHERE user_id='%s'", params.getString("user_id"));
 
         selectCustomQuery(0, query);
-    }
-
-    public void selectCustomQuery(int what,  String query){
-        System.out.println(what + " selectQuery execute");
-
-        vertx.eventBus().send("to.DBVerticle.selectCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
-
-            @Override
-            public void handle(AsyncResult<Message<JsonObject>> res) {
-                onExecute(what, res.result().body());
-                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString());
-
-            }
-        });
     }
 
 
@@ -71,9 +56,22 @@ public class JoinAPI extends Base{
         return res;
     }
 
+    public void selectCustomQuery(int what, String query) {
+        System.out.println(what + " selectQuery execute");
 
-    public void insertCustomQuery(int what,  String query){
-        System.out.println(what+" insertQuery execute");
+        vertx.eventBus().send("to.DBVerticle.selectCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
+
+            @Override
+            public void handle(AsyncResult<Message<JsonObject>> res) {
+                onExecute(what, res.result().body());
+                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString());
+
+            }
+        });
+    }
+
+    public void insertCustomQuery(int what, String query) {
+        System.out.println(what + " insertQuery execute");
 
         vertx.eventBus().send("to.DBVerticle.insertCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
 
