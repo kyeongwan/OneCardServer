@@ -8,15 +8,17 @@ public class Test extends AbstractVerticle {
 
     public static void main(String argp[]){
         Vertx v = Vertx.vertx();
-        v.deployVerticle(new HttpServerVertical());
+        v.deployVerticle(new HttpVertical());
         v.deployVerticle(new DBVerticle());
-        v.deployVerticle(new ChatVerticle());
+        v.deployVerticle(new RestVerticle());
+        //v.deployVerticle(new ChatVerticle());
     }
 
     public void start(){
         Vertx v = Vertx.vertx();
-        v.deployVerticle(new HttpServerVertical());
+        v.deployVerticle(new HttpVertical());
         v.deployVerticle(new DBVerticle());
-        v.deployVerticle(new ChatVerticle());
+        v.deployVerticle(new RestVerticle());
+        //v.deployVerticle(new ChatVerticle());
     }
 }

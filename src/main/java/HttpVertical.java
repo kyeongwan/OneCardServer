@@ -5,7 +5,7 @@ import io.vertx.ext.web.handler.StaticHandler;
 /**
  * Created by lk on 16. 4. 28..
  */
-public class HttpServerVertical extends AbstractVerticle {
+public class HttpVertical extends AbstractVerticle {
 
     Router router;
     public void start() {
@@ -15,6 +15,7 @@ public class HttpServerVertical extends AbstractVerticle {
         sHandler.setCachingEnabled(false);
         router.route().handler(sHandler);
         vertx.createHttpServer().requestHandler(router::accept).listen(8081);
+
     }
 
 
