@@ -39,12 +39,12 @@ public class ChatVerticle extends AbstractVerticle {
     }
 
     private void permitInit(){
-    	
-    	eb.send("to.RedisVerticle.keys", "channelList:*", new Handler<AsyncResult<Message<JsonObject>>>() {
+    	String query = "SELECT * FROM channel *";
+    	eb.send("to.DBVerticle.selectQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
 
 			@Override
 			public void handle(AsyncResult<Message<JsonObject>> res) {
-				
+
 				for(int i = 0; i < res.result().body().getJsonArray("result").size(); i++){
 					String a[]=res.result().body().getJsonArray("result").getString(i).split(":");
 //					permissions[permissions.length]="to.channel."+a[2];
@@ -205,7 +205,7 @@ public class ChatVerticle extends AbstractVerticle {
 //            }
 //        });
     	
-        eb.consumer("to.ChatVerticle.permit",new Handler<Message<String>>() {
+        eb.consumer("to.ChatVerticle.permit",new Handler<Message<String>>() {	// 방이 생성되었을 떄 퍼미션 설정
             @Override
             public void handle(Message<String> objectMessage) {
             	System.out.println("permit add : "+ objectMessage.body());

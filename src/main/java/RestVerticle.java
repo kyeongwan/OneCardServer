@@ -21,31 +21,7 @@ public class RestVerticle extends AbstractVerticle {
     Object reqClasses[][] = new Object[][]{
     		{"/user/login", api.LoginAPI.class, "GET"},
     		{"/user/join", api.JoinAPI.class, "GET"},
-//    		{"/user/registApp", com.soma.ggamtalk.api.RegistAppAPI.class, "GET"},
-//    		{"/user/listApp", com.soma.ggamtalk.api.ListAppAPI.class, "GET"},
-//    		{"/user/makeChannel", com.soma.ggamtalk.api.MakeChannelAPI.class, "GET"},
-//    		{"/user/listChannel", com.soma.ggamtalk.api.ListChannelAPI.class, "GET"},
-//    		{"/user/registNick", com.soma.ggamtalk.api.RegistNickAPI.class, "GET"},
-//    		{"/user/joinChannel", com.soma.ggamtalk.api.JoinChannelAPI.class, "GET"},
-//    		{"/user/withdrawChannel", com.soma.ggamtalk.api.WithdrawChannelAPI.class, "GET"},
-//    		{"/user/getGlobalConfig", com.soma.ggamtalk.api.GetGlobalConfigAPI.class, "GET"},
-//    		{"/user/setGlobalConfig", com.soma.ggamtalk.api.SetGlobalConfigAPI.class, "GET"},
-//    		{"/user/searchChannel", com.soma.ggamtalk.api.SearchChannelAPI.class, "GET"},
-//    		{"/user/setAppConfig", com.soma.ggamtalk.api.SetAppConfigAPI.class, "GET"},
-//    		{"/user/getAppConfig", com.soma.ggamtalk.api.GetAppConfigAPI.class, "GET"},
-//    		{"/user/getNoticeList", com.soma.ggamtalk.api.GetNoticeListAPI.class, "GET"},
-//    		{"/user/changeChannelSet", com.soma.ggamtalk.api.ChangeChannelSetAPI.class, "GET"},
-//    		{"/user/customQuery", com.soma.ggamtalk.api.CustomQueryAPI.class, "GET"},
-//    		{"/user/appChannel", com.soma.ggamtalk.api.AppChannelAPI.class, "GET"},
-//    		{"/user/deleteUser", com.soma.ggamtalk.api.DeleteUserAPI.class, "GET"},
-//    		{"/user/logout", com.soma.ggamtalk.api.LogoutAPI.class, "GET"},
-//    		{"/user/changePassword", com.soma.ggamtalk.api.ChangePasswordAPI.class, "GET"},
-//    		{"/user/removeApp", com.soma.ggamtalk.api.RemoveAppAPI.class, "GET"},
-//    		{"/user/removeChannel", com.soma.ggamtalk.api.RemoveChannelAPI.class, "GET"},
-//    		{"/user/userListChannel", com.soma.ggamtalk.api.UserListChannelAPI.class, "GET"},
-//    		{"/user/noticePush", com.soma.ggamtalk.api.NoticePushAPI.class, "GET"},
-//    		{"/user/changeUserColor", com.soma.ggamtalk.api.ChangeUserColorAPI.class, "GET"},
-//    		{"/user/traffic", com.soma.ggamtalk.api.TrafficAPI.class, "GET"},
+    		{"/user/makeroom", api.MakeRoomAPI.class, "GET"},
     		{"/user/test", api.TestAPI.class, "GET"}
     		
     };
@@ -75,7 +51,6 @@ public class RestVerticle extends AbstractVerticle {
 				String query = request.query();
 				JsonObject param = new JsonObject();
 				params.forEach(entry -> param.put(entry.getKey(), entry.getValue()));
-//				params.forEach(entry -> param.put(entry.getKey(), new String(entry.getValue().toString().getBytes(), "UTF-8")));
 
 				System.out.println(request.method().name());
 				System.out.println("uri : " + uri);
@@ -85,24 +60,6 @@ public class RestVerticle extends AbstractVerticle {
 				System.out.println("paramters to json : " + params.get("user_id"));
 				System.out.println("localAddress : " + request.localAddress());
 
-//				request.handler(new Handler<Buffer>() {
-//
-//					@Override
-//					public void handle(Buffer buffer) {
-//						System.out.println("buffer : " + buffer.toString());
-//
-//						ObjectMapper m = new ObjectMapper();
-//						try {
-//							JsonNode rootNode = m.readTree(buffer.toString());
-//							System.out.println("buffer : " + buffer.toString());
-//							String jsonOutput = m.writeValueAsString(rootNode);
-//							System.out.println("jsonOutput : " + jsonOutput);
-//
-//						}catch(Exception e){
-//						}
-//					}
-//
-//				});
 				request.endHandler(new Handler<Void>() {
 
 					@Override

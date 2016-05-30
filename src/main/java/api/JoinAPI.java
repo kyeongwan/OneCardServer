@@ -83,7 +83,6 @@ public class JoinAPI extends Base {
             }
         });
     }
-
     public void onExecute(int what, JsonObject resultJO) {
         if (resultJO.containsKey("result_code") && resultJO.getInteger("result_code") == -1) {
             request.response().end(resultJO.toString());
