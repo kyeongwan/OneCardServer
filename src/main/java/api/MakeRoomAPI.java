@@ -38,15 +38,15 @@ public class MakeRoomAPI extends Base {
 
                 String query = "";
                 if ("off".equals(params.getString("is_private")))
-                    query = String.format("INSERT INTO channel SET channel_id='%s', host_id='%s', channel_name='%s', is_private='%s', "
+                    query = String.format("INSERT INTO channel SET channel_id='%s', room_name='%s', is_private='%s', "
                                     + "channel_limit='%s'",
-                            channel_id, params.getString("user_id"), params.getString("channel_name"),
-                            params.getString("is_private"), params.getString("channel_limit"));
+                            channel_id,  params.getString("room_name"),
+                            params.getString("is_private"), params.getString("room_limit"));
                 else if ("on".equals(params.getString("is_private")))
-                    query = String.format("INSERT INTO channel SET channel_id='%s', chief_id='%s', channel_name='%s', is_private='%s', "
+                    query = String.format("INSERT INTO channel SET room_id='%s', room_name='%s', is_private='%s', "
                                     + "channel_pw='%s', channel_limit='%s'",
-                            channel_id, params.getString("user_id"), params.getString("channel_name"),
-                            params.getString("is_private"), params.getString("channel_pw"), params.getString("channel_limit"));
+                            channel_id,  params.getString("room_name"),
+                            params.getString("is_private"), params.getString("room_pw"), params.getString("room_limit"));
 
                 insertCustomQuery(1, query);
                 // 방 정보를 디비에 넣음
@@ -57,7 +57,7 @@ public class MakeRoomAPI extends Base {
                 //TODO: 채널의 모든 정보 넣기로 변경
 
 
-                String query2 = String.format("INSERT INTO channel_user_list SET user_id='%s', channel_id='%s', user_nick='%s'",
+                String query2 = String.format("INSERT INTO room_user_list SET user_id='%s', room_id='%s', user_nick='%s'",
                         params.getString("user_id"), channel_id, params.getString("user_nick"));
 
                 insertCustomQuery(2, query2);
@@ -80,17 +80,17 @@ public class MakeRoomAPI extends Base {
         JsonObject res = new JsonObject();
 
 
-        if (!params.containsKey("channel_name") || params.getString("channel_name").isEmpty() || params.getString("channel_name").equals("")) {
+        if (!params.containsKey("room_name") || params.getString("room_name").isEmpty() || params.getString("room_name").equals("")) {
             res.put("result_code", -1);
             res.put("result_msg", "방 이름을 정확히 입력해주세요.");
             return res;
         }
-        if (!params.containsKey("public_onoff") || params.getString("public_onoff").isEmpty() || params.getString("public_onoff").equals("")) {
+        if (!params.containsKey("is_private") || params.getString("is_private").isEmpty() || params.getString("is_private").equals("")) {
             res.put("result_code", -1);
             res.put("result_msg", "비밀방 여부를 선택해주세요.");
             return res;
         }
-        if (!params.containsKey("channel_limit") || params.getString("channel_limit").isEmpty() || params.getString("channel_limit").equals("")) {
+        if (!params.containsKey("room_limit") || params.getString("room_limit").isEmpty() || params.getString("room_limit").equals("")) {
             res.put("result_code", -1);
             res.put("result_msg", "채널 입장 제한 수를 설정해주세요.");
             return res;
@@ -101,7 +101,7 @@ public class MakeRoomAPI extends Base {
     }
 
     public void setPermission(int what, String channel_id) {
-        System.out.println(what + " setRedis execute");
+        System.out.println(what + " Permission set execute");
 
         vertx.eventBus().send("to.ChatVerticle.permit", channel_id, new Handler<AsyncResult<Message<JsonObject>>>() {
 
