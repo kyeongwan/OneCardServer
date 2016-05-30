@@ -38,13 +38,13 @@ public class MakeRoomAPI extends Base {
 
                 String query = "";
                 if ("off".equals(params.getString("is_private")))
-                    query = String.format("INSERT INTO channel SET channel_id='%s', room_name='%s', is_private='%s', "
-                                    + "channel_limit='%s'",
+                    query = String.format("INSERT INTO channel SET room_id='%s', room_name='%s', is_private='%s', "
+                                    + "room_limit='%s'",
                             channel_id,  params.getString("room_name"),
                             params.getString("is_private"), params.getString("room_limit"));
                 else if ("on".equals(params.getString("is_private")))
                     query = String.format("INSERT INTO channel SET room_id='%s', room_name='%s', is_private='%s', "
-                                    + "channel_pw='%s', channel_limit='%s'",
+                                    + "room_pw='%s', room_limit='%s'",
                             channel_id,  params.getString("room_name"),
                             params.getString("is_private"), params.getString("room_pw"), params.getString("room_limit"));
 
@@ -90,9 +90,17 @@ public class MakeRoomAPI extends Base {
             res.put("result_msg", "비밀방 여부를 선택해주세요.");
             return res;
         }
+
+        if(params.getString("is_private") == "on"){
+            if (!params.containsKey("room_pw") || params.getString("room_pw").isEmpty() || params.getString("room_pw").equals("")) {
+                res.put("result_code", -1);
+                res.put("result_msg", "비밀번호를 입력해주세요.");
+                return res;
+            }
+        }
         if (!params.containsKey("room_limit") || params.getString("room_limit").isEmpty() || params.getString("room_limit").equals("")) {
             res.put("result_code", -1);
-            res.put("result_msg", "채널 입장 제한 수를 설정해주세요.");
+            res.put("result_msg", "방 입장 제한 수를 설정해주세요.");
             return res;
         }
 
