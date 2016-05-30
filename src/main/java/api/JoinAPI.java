@@ -99,8 +99,8 @@ public class JoinAPI extends Base{
                 JsonArray ja = resultJO.getJsonArray("results");
 
                 if (ja.size() < 1) {
-                    String query = String.format("INSERT INTO user SET user_id='%s', user_pw='%s', nick_name='%s', join_date= '%s'",
-                            params.getString("user_id"), params.getString("user_pw"), params.getString("nick_name"), params.getString("gcm_id"), "now()");
+                    String query = String.format("INSERT INTO user SET user_id='%s', user_pw='%s', nick_name='%s'",
+                            params.getString("user_id"), params.getString("user_pw"), params.getString("nick_name"));
 
                     insertCustomQuery(1, query);
                 } else {
