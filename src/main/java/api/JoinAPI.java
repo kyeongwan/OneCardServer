@@ -9,29 +9,19 @@ import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
-public class JoinAPI {
+import java.io.UnsupportedEncodingException;
+
+public class JoinAPI extends Base{
     //TODO 세션 시간 설정
     //String token = "";
 
     public JoinAPI() {
     }
 
-    Vertx vertx;
-    HttpServerRequest request;
-    JsonObject params;
 
-    public void init(Vertx vertx, HttpServerRequest request) {
-        this.vertx = vertx;
-        this.request = request;
-        MultiMap param = request.params();
-        params = new JsonObject();
-        param.forEach(entry -> params.put(entry.getKey(), entry.getValue()));
-
-    }
 
     public void execute(Vertx vertx, HttpServerRequest request) {
         init(vertx, request);
-
         if (params.isEmpty() || checkValidation(params).getInteger("result_code") == -1) {
             request.response().end(checkValidation(params).toString());
             return;
@@ -44,14 +34,14 @@ public class JoinAPI {
     }
 
     public void selectCustomQuery(int what,  String query){
-        System.out.println(what+" selectQuery execute");
+        System.out.println(what + " selectQuery execute");
 
         vertx.eventBus().send("to.DBVerticle.selectCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
 
             @Override
             public void handle(AsyncResult<Message<JsonObject>> res) {
-                onExecute(what,  res.result().body());
-                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString() );
+                onExecute(what, res.result().body());
+                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString());
 
             }
         });
@@ -72,14 +62,9 @@ public class JoinAPI {
             res.put("result_msg", "비밀번호를 정확히 입력하세요.");
             return res;
         }
-        if (!params.containsKey("gcm_id") || params.getString("gcm_id").isEmpty() || params.getString("gcm_id").equals("")) {
+        if (!params.containsKey("nick_name") || params.getString("nick_name").isEmpty() || params.getString("nick_name").equals("")) {
             res.put("result_code", -1);
-            res.put("result_msg", "gcm id가 전달되지 않았습니다.");
-            return res;
-        }
-        if (!params.containsKey("device_id") || params.getString("device_id").isEmpty() || params.getString("device_id").equals("")) {
-            res.put("result_code", -1);
-            res.put("result_msg", "device id가 전달되지 않았습니다.");
+            res.put("result_msg", "nick_name이 전달되지 않았습니다.");
             return res;
         }
         res.put("result_code", 0);
@@ -114,8 +99,8 @@ public class JoinAPI {
                 JsonArray ja = resultJO.getJsonArray("results");
 
                 if (ja.size() < 1) {
-                    String query = String.format("INSERT INTO user SET user_id='%s', user_pw='%s', device_id='%s', gcm_id='%s', join_date=%s",
-                            params.getString("user_id"), params.getString("user_pw"), params.getString("device_id"), params.getString("gcm_id"), "now()");
+                    String query = String.format("INSERT INTO user SET user_id='%s', user_pw='%s', nick_name='%s', join_date=%s",
+                            params.getString("user_id"), params.getString("user_pw"), params.getString("nick_name"), params.getString("gcm_id"), "now()");
 
                     insertCustomQuery(1, query);
                 } else {

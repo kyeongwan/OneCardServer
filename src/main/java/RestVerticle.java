@@ -2,7 +2,9 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.json.JsonObject;
@@ -18,7 +20,7 @@ public class RestVerticle extends AbstractVerticle {
 	
     Object reqClasses[][] = new Object[][]{
 //    		{"/user/login", api.LoginAPI.class, "POST"},
-    		{"/user/join", api.JoinAPI.class, "POST"}
+    		{"/user/join", api.JoinAPI.class, "GET"},
 //    		{"/user/registApp", com.soma.ggamtalk.api.RegistAppAPI.class, "GET"},
 //    		{"/user/listApp", com.soma.ggamtalk.api.ListAppAPI.class, "GET"},
 //    		{"/user/makeChannel", com.soma.ggamtalk.api.MakeChannelAPI.class, "GET"},
@@ -44,7 +46,7 @@ public class RestVerticle extends AbstractVerticle {
 //    		{"/user/noticePush", com.soma.ggamtalk.api.NoticePushAPI.class, "GET"},
 //    		{"/user/changeUserColor", com.soma.ggamtalk.api.ChangeUserColorAPI.class, "GET"},
 //    		{"/user/traffic", com.soma.ggamtalk.api.TrafficAPI.class, "GET"},
-//    		{"/user/test", com.soma.ggamtalk.api.TestAPI.class, "GET"}
+    		{"/user/test", api.TestAPI.class, "GET"}
     		
     };
     
@@ -57,26 +59,24 @@ public class RestVerticle extends AbstractVerticle {
 		super.start();
 		
 		consumerEventBus();
-		
+
 		Router router = Router.router(vertx);
 		Route route = router.route("/user/*");
-		
-		route.handler(new Handler<RoutingContext>(){
 
-			@Override
-			public void handle(RoutingContext routingContext) {
-				
+		route.handler(routingContext ->{
+
 				HttpServerRequest request = routingContext.request();
 				MultiMap params = request.params();
-				
+
+
 				String uri = request.uri();
 				String path = request.path();
-				
+
 				String query = request.query();
 				JsonObject param = new JsonObject();
 				params.forEach(entry -> param.put(entry.getKey(), entry.getValue()));
 //				params.forEach(entry -> param.put(entry.getKey(), new String(entry.getValue().toString().getBytes(), "UTF-8")));
-				
+
 				System.out.println(request.method().name());
 				System.out.println("uri : " + uri);
 				System.out.println("path : " + path);
@@ -90,54 +90,53 @@ public class RestVerticle extends AbstractVerticle {
 //					@Override
 //					public void handle(Buffer buffer) {
 //						System.out.println("buffer : " + buffer.toString());
-//						
+//
 //						ObjectMapper m = new ObjectMapper();
 //						try {
 //							JsonNode rootNode = m.readTree(buffer.toString());
 //							System.out.println("buffer : " + buffer.toString());
 //							String jsonOutput = m.writeValueAsString(rootNode);
 //							System.out.println("jsonOutput : " + jsonOutput);
-//							
+//
 //						}catch(Exception e){
 //						}
 //					}
-//					
+//
 //				});
 				request.endHandler(new Handler<Void>() {
-					
+
 					@Override
 					public void handle(Void empty) {
-						
-						for(int i=0; i<reqClasses.length; i++) {
-							if(path.equals(reqClasses[i][0])) {
-								
+
+						for (int i = 0; i < reqClasses.length; i++) {
+							if (path.equals(reqClasses[i][0])) {
+
 								try {
-									Class cls = (Class)reqClasses[i][1];
+									Class cls = (Class) reqClasses[i][1];
 									Object object = cls.newInstance();
 									System.out.println(object.getClass().getName() + " execute !!");
-									Class[] paramTypes = {Vertx.class, HttpServerRequest.class };
+									Class[] paramTypes = {Vertx.class, HttpServerRequest.class};
 									Method apiMethod = cls.getDeclaredMethod("execute", paramTypes);
 									request.response().putHeader("content-type", "application/json; charset=UTF-8");
-									request.response().putHeader("Access-Control-Allow-Origin", "*" );
-									apiMethod.invoke(object, vertx, request);  
+									request.response().putHeader("Access-Control-Allow-Origin", "*");
+									apiMethod.invoke(object, vertx, request);
 									break;
-									
+
 								} catch (Exception e) {
-									request.response().end("error : "+e.getMessage());
+									request.response().end("error : " + e.getMessage());
 									e.printStackTrace();
 									break;
-								} 
+								}
 							}
-							if(i==reqClasses.length -1){
-								request.response().end("error : "+ "not exist api");
+							if (i == reqClasses.length - 1) {
+								request.response().end("error : " + "not exist api");
 								break;
 							}
-							
+
 						}
 					}
 				});
-			}
-			
+
 		});
 	
 		HttpServerOptions httpServerOptions = new HttpServerOptions();
