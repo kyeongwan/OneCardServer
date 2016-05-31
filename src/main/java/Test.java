@@ -11,7 +11,7 @@ public class Test extends AbstractVerticle {
         v.deployVerticle(new HttpVertical());
         v.deployVerticle(new DBVerticle());
         v.deployVerticle(new RestVerticle());
-        //v.deployVerticle(new ChatVerticle());
+        v.deployVerticle(new ChatVerticle());
     }
 
     public void start(){
@@ -19,6 +19,6 @@ public class Test extends AbstractVerticle {
         v.deployVerticle(new HttpVertical());
         v.deployVerticle(new DBVerticle());
         v.deployVerticle(new RestVerticle());
-        //v.deployVerticle(new ChatVerticle());
+        v.deployVerticle(new ChatVerticle());
     }
 }

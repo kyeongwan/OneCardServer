@@ -55,7 +55,7 @@ public class MakeRoomAPI extends Base {
             case 1:
                 setPermission(2, channel_id);
                 //TODO: 채널의 모든 정보 넣기로 변경
-                
+
                 String query2 = String.format("INSERT INTO room_user_list SET user_id='%s', room_id='%s', user_nick='%s'",
                         params.getString("user_id"), channel_id, params.getString("user_nick"));
 
