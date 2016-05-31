@@ -55,9 +55,6 @@ public class MakeRoomAPI extends Base {
             case 1:
                 setPermission(2, channel_id);
                 //TODO: 채널의 모든 정보 넣기로 변경
-
-
-
                 break;
 
             //TODO: 채널 정보 캐시에 저장하는 로직
@@ -66,7 +63,7 @@ public class MakeRoomAPI extends Base {
                         params.getString("user_id"), channel_id, params.getString("user_nick"));
 
                 insertCustomQuery(3, query2);
-
+                break;
             case 3:
                 rs.put("result_code", 0);
                 rs.put("result_msg", "채널이 생성되었습니다.");
