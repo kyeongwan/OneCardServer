@@ -36,15 +36,14 @@ public class ChatVerticle extends AbstractVerticle {
     }
 
     private void permitInit(){
-    	String query = "SELECT * FROM channel";
+    	String query = "SELECT room_id FROM channel";
     	eb.send("to.DBVerticle.selectCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
-
 
 			@Override
 			public void handle(AsyncResult<Message<JsonObject>> res) {
                 try {
-                    for (int i = 0; i < res.result().body().getJsonArray("result").size(); i++) {
-                        String a = res.result().body().getJsonArray("result").getJsonObject(i).getString("room_id");
+                    for (int i = 0; i < res.result().body().getJsonArray("results").size(); i++) {
+                        String a = res.result().body().getJsonArray("results").getJsonObject(i).getString("room_id");
 //					permissions[permissions.length]="to.channel."+a[2];
                         System.out.println("permmission : " + a);
                         bridgeOptions.addOutboundPermitted(new PermittedOptions().setAddress("to.channel." + a));
@@ -56,7 +55,7 @@ public class ChatVerticle extends AbstractVerticle {
                     e.printStackTrace();
                 }
                 try {
-                    System.out.println(res.result().body().getJsonArray("result").toString());
+                    System.out.println(res.result().body().getJsonArray("results").toString());
                 }catch (Exception e){
                     e.printStackTrace();
                 }
