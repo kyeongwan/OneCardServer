@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MakeRoomAPI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MakeRoomAPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/api/MakeRoomAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21363637">
-              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+            <state vertical-scroll-proportion="-24.185184">
+              <caret line="113" column="44" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChatVerticle.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChatVerticle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ChatVerticle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="298" column="16" selection-start-line="298" selection-start-column="16" selection-end-line="298" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.82690185">
+              <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,7 +124,7 @@
       <file leaf-file-name="DBVerticle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/DBVerticle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-84.81481">
+            <state vertical-scroll-proportion="-123.703705">
               <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -476,8 +476,8 @@
         <option value="$PROJECT_DIR$/src/main/java/api/JoinAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/Base.java" />
         <option value="$PROJECT_DIR$/src/main/java/RestVerticle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ChatVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/MakeRoomAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ChatVerticle.java" />
       </list>
     </option>
   </component>
@@ -986,7 +986,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1048,7 +1048,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1110,7 +1110,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1162,7 +1162,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1254,7 +1254,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1272,7 +1272,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1282,7 +1282,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1363,9 +1363,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/MakeRoomAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.185184">
+          <caret line="113" column="44" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DBVerticle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-84.81481">
+        <state vertical-scroll-proportion="-123.703705">
           <caret line="247" column="21" selection-start-line="247" selection-start-column="21" selection-end-line="247" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1379,18 +1389,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ChatVerticle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="298" column="16" selection-start-line="298" selection-start-column="16" selection-end-line="298" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/MakeRoomAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21363637">
-          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.82690185">
+          <caret line="50" column="63" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

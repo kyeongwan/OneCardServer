@@ -39,7 +39,7 @@ public class ChatVerticle extends AbstractVerticle {
     }
 
     private void permitInit(){
-    	String query = "SELECT * FROM channel *";
+    	String query = "SELECT * FROM channel";
     	eb.send("to.DBVerticle.selectQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
 
 			@Override
