@@ -39,19 +39,28 @@ public class ChatVerticle extends AbstractVerticle {
     	String query = "SELECT * FROM channel";
     	eb.send("to.DBVerticle.selectCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
 
+
 			@Override
 			public void handle(AsyncResult<Message<JsonObject>> res) {
-
-				for(int i = 0; i < res.result().body().getJsonArray("result").size(); i++){
-					String a=res.result().body().getJsonArray("result").getJsonObject(i).getString("room_id");
+                try {
+                    for (int i = 0; i < res.result().body().getJsonArray("result").size(); i++) {
+                        String a = res.result().body().getJsonArray("result").getJsonObject(i).getString("room_id");
 //					permissions[permissions.length]="to.channel."+a[2];
-					System.out.println("permmission : "+ a);
-					bridgeOptions.addOutboundPermitted(new PermittedOptions().setAddress("to.channel."+a));
-				}
-				sockJSHandler.bridge(bridgeOptions);
-		    	router.route("/eventbus/*").handler(sockJSHandler);
+                        System.out.println("permmission : " + a);
+                        bridgeOptions.addOutboundPermitted(new PermittedOptions().setAddress("to.channel." + a));
+                    }
+                    sockJSHandler.bridge(bridgeOptions);
+                    router.route("/eventbus/*").handler(sockJSHandler);
 //				createOptions();
-			}
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                try {
+                    System.out.println(res.result().body().getJsonArray("result").toString());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
     	});
     	
     }
