@@ -216,7 +216,7 @@ public class ChatVerticle extends AbstractVerticle {
             	jsonObject.put("result_code",0);
             	jsonObject.put("result_msg", "permit add success");
             	System.out.println("permit add success");
-//            	objectMessage.reply(jsonObject);
+            	objectMessage.reply(jsonObject);
             }
         });
             	

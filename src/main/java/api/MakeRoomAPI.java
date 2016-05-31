@@ -54,11 +54,12 @@ public class MakeRoomAPI extends Base {
 
             case 1:
                 setPermission(2, channel_id);
-                //TODO: 채널의 모든 정보 넣기로 변경
+                break;
 
+            case 2:
                 String query2 = String.format("INSERT INTO room_user_list SET user_id='%s', room_id='%s', user_nick='%s'",
                         params.getString("user_id"), channel_id, params.getString("user_nick"));
-
+                // 유저를 방에 넣음.
                 insertCustomQuery(3, query2);
                 break;
             case 3:
@@ -66,7 +67,6 @@ public class MakeRoomAPI extends Base {
                 rs.put("result_msg", "채널이 생성되었습니다.");
                 rs.put("channel_id", channel_id);
                 request.response().end(rs.toString());
-
                 break;
 
         }
@@ -108,7 +108,14 @@ public class MakeRoomAPI extends Base {
     public void setPermission(int what, String channel_id) {
         System.out.println(" Permission set execute");
 
-        vertx.eventBus().send("to.ChatVerticle.permit", channel_id);
+        vertx.eventBus().send("to.ChatVerticle.permit", channel_id, new Handler<AsyncResult<Message<JsonObject>>>() {
+
+            @Override
+            public void handle(AsyncResult<Message<JsonObject>> res) {
+                onExecute(what, res.result().body());
+                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString());
+            }
+        });
     }
 
 
