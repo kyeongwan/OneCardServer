@@ -22,7 +22,8 @@ public class RestVerticle extends AbstractVerticle {
     		{"/user/login", api.LoginAPI.class, "GET"},
     		{"/user/join", api.JoinAPI.class, "GET"},
     		{"/user/makeroom", api.MakeRoomAPI.class, "GET"},
-    		{"/user/test", api.TestAPI.class, "GET"}
+    		{"/user/test", api.TestAPI.class, "GET"},
+			{"/user/joinroom", api.JoinRoomAPI.class, "GET"}
     		
     };
     
