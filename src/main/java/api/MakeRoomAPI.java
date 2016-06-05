@@ -95,6 +95,13 @@ public class MakeRoomAPI extends Base {
                 return res;
             }
         }
+        if(params.getString("is_private") == "on"){
+            if(params.getString("room_pw").length() <= 4){
+                res.put("result_code", -1);
+                res.put("result_msg", "비밀번호를 4자 이상 입력해주세요.");
+                return res;
+            }
+        }
         if (!params.containsKey("room_limit") || params.getString("room_limit").isEmpty() || params.getString("room_limit").equals("")) {
             res.put("result_code", -1);
             res.put("result_msg", "방 입장 제한 수를 설정해주세요.");
