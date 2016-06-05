@@ -125,9 +125,9 @@ public class ChatVerticle extends AbstractVerticle {
 
                 JsonObject json = event.body();
                 String room_id = json.getString("room_id");
-                String data = json.getString("data");
+                JsonObject data = json.getJsonObject("data");
                 event.reply(event);
-                eb.publish("to.channel." + room_id, data);
+                eb.publish("to.channel." + room_id, data.toString());
             }
         });
     	
