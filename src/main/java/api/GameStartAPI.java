@@ -105,7 +105,7 @@ public class GameStartAPI extends Base {
                     json.put("turn", i);
                     json.put("id", id);
                     for (int k = 0; k < 5; k++) {
-                        json.put("card" + i, list.poll());
+                        json.put("card" + k, list.poll());
                     }
                     JsonObject c = new JsonObject();
                     c.put("room_id", params.getString("room_id"));
