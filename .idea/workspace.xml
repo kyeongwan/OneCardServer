@@ -31,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RestVerticle.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RestVerticle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/RestVerticle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.925926">
-              <caret line="80" column="75" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.2215909">
+              <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameStartAPI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameStartAPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/api/GameStartAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.479603">
+            <state vertical-scroll-proportion="0.0">
               <caret line="129" column="58" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -456,7 +456,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Client/ChatTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/JoinAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/ListChannelAPI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/RestVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/MakeRoomAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/LoginAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/JoinRoomAPI.java" />
@@ -464,6 +463,7 @@
         <option value="$PROJECT_DIR$/src/main/java/DBVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/ChatVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/GameStartAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RestVerticle.java" />
       </list>
     </option>
   </component>
@@ -1278,14 +1278,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RestVerticle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.925926">
-          <caret line="80" column="75" selection-start-line="80" selection-start-column="68" selection-end-line="80" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/LoginAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1359,11 +1351,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/GameStartAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.479603">
+        <state vertical-scroll-proportion="0.0">
           <caret line="129" column="58" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RestVerticle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2215909">
+          <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>
