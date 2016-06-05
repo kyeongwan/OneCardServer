@@ -118,15 +118,13 @@ public class GameStartAPI extends Base {
                         }
                     });
                 }
+                JsonObject rs = new JsonObject();
+
+                rs.put("result_code", 0);
+                rs.put("result_msg", "게임이 시작되었습니다.");
+                request.response().end(rs.toString());
                 break;
         }
-        JsonObject rs = new JsonObject();
-
-        rs.put("result_code", 0);
-        rs.put("result_msg", "게임이 시작되었습니다.");
-        request.response().end(rs.toString());
-
-
     }
 
     public JsonObject checkValidation(JsonObject params) {
