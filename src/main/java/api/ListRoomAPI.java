@@ -19,12 +19,7 @@ public class ListRoomAPI extends Base {
 
     public void execute(Vertx vertx, HttpServerRequest request) {
         init(vertx, request);
-
-        if (params.isEmpty()) {
-            request.response().end("error 남요");
-            return;
-        }
-
+        
         onExecute(0, params);
     }
 
@@ -95,15 +90,5 @@ public class ListRoomAPI extends Base {
         });
     }
 
-    public JsonObject checkValidation(JsonObject params) {
-        JsonObject res = new JsonObject();
-        if (!params.containsKey("token") || params.getString("token").isEmpty() || params.getString("token").equals("")){
-            res.put("result_code",-1);
-            res.put("result_msg", "로그인 후 이용해주세요.");
-            return res;
-        }
-        res.put("result_code", 0);
-        return res;
-    }
 
 }
