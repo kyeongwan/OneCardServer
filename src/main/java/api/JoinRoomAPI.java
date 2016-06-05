@@ -46,7 +46,7 @@ public class JoinRoomAPI extends Base {
                 selectCustomQuery(-3, query3);
                 break;
             case -3:
-                if(resultJO.getJsonArray("results").size() > params.getInteger("limit")){
+                if(resultJO.getJsonArray("results").size() >= params.getInteger("limit")){
                     rs.put("result_code" , -1);
                     rs.put("result_msg", "풀방입니다.");
                     request.response().end(rs.toString());

@@ -37,7 +37,7 @@ public class ListRoomAPI extends Base {
             case 1:
                 String query2;
                 if(params.containsKey("room_name")){
-                    query2 = String.format("SELECT * FROM channel WHERE is_game = 0 and room_name = " + params.getString("room_name"));
+                    query2 = String.format("SELECT * FROM channel WHERE is_game = 0 and room_name = '" + params.getString("room_name")+"'");
                 }else{
                     query2 = String.format("SELECT * FROM channel WHERE is_game = 0");
                 }
