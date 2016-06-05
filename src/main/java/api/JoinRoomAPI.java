@@ -34,12 +34,6 @@ public class JoinRoomAPI extends Base {
 
         switch (what) {
             case 0:
-                if (!resultJO.containsKey("result") || resultJO.getString("result") == null) {
-                    rs.put("result_code", -1);
-                    rs.put("result_msg", "로그인이 필요합니다.");
-                    request.response().end(rs.toString());
-                    break;
-                }
 
                 if (params.containsKey("channel_pw")) {
                     String query = String.format("SELECT * FROM channel WHERE room_id='%s' and room_pw='%s'",
