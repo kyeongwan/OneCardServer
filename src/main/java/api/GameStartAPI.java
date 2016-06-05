@@ -107,7 +107,10 @@ public class GameStartAPI extends Base {
                     for (int k = 0; k < 5; k++) {
                         json.put("card" + i, list.poll());
                     }
-                    vertx.eventBus().send("to.ChatVerticle.gamestart", params.getString("room_id"), new Handler<AsyncResult<Message<JsonObject>>>() {
+                    JsonObject c = new JsonObject();
+                    c.put("room_id", params.getString("room_id"));
+                    c.put("data", json);
+                    vertx.eventBus().send("to.ChatVerticle.gamestart", c, new Handler<AsyncResult<Message<JsonObject>>>() {
 
                         @Override
                         public void handle(AsyncResult<Message<JsonObject>> res) {
@@ -121,7 +124,6 @@ public class GameStartAPI extends Base {
 
         rs.put("result_code", 0);
         rs.put("result_msg", "게임이 시작되었습니다.");
-        rs.put("nick_name", resultJO.getJsonArray("results").getJsonObject(0).getString("nick_name"));
         request.response().end(rs.toString());
 
 
