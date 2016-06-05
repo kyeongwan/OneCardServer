@@ -40,8 +40,8 @@ public class JoinRoomAPI extends Base {
                             params.getString("room_id"), params.getString("room_pw"));
                     selectCustomQuery(1, query);
                 } else {
-                    String query = String.format("INSERT INTO room_user_list SET user_id='%s', channel_id='%s', user_nick='%s'",
-                            params.getString("user_id"), params.getString("channel_id"), params.getString("user_nick"));
+                    String query = String.format("INSERT INTO room_user_list SET user_id='%s', room_id='%s', user_nick='%s'",
+                            params.getString("user_id"), params.getString("room_id"), params.getString("user_nick"));
                     insertCustomQuery(2, query);
                 }
 
@@ -55,8 +55,8 @@ public class JoinRoomAPI extends Base {
                     break;
                 }
 
-                String query2 = String.format("INSERT INTO channel_user_list SET user_id='%s', channel_id='%s', app_id='%s', user_nick='%s'",
-                        params.getString("user_id"), params.getString("channel_id"), params.getString("app_id"), params.getString("user_nick"));
+                String query2 = String.format("INSERT INTO channel_user_list SET user_id='%s', room_id='%s', user_nick='%s'",
+                        params.getString("user_id"), params.getString("room_id"),  params.getString("user_nick"));
                 insertCustomQuery(2, query2);
                 break;
 
@@ -125,6 +125,11 @@ public class JoinRoomAPI extends Base {
         if (!params.containsKey("user_nick") || params.getString("user_nick").isEmpty() || params.getString("user_nick").equals("")) {
             res.put("result_code", -1);
             res.put("result_msg", "유저 닉네임을 입력해주세요.");
+            return res;
+        }
+        if (!params.containsKey("user_id") || params.getString("user_id").isEmpty() || params.getString("user_id").equals("")) {
+            res.put("result_code", -1);
+            res.put("result_msg", "유저 아이디를 입력해주세요.");
             return res;
         }
 
