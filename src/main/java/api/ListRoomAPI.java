@@ -20,8 +20,8 @@ public class ListRoomAPI extends Base {
     public void execute(Vertx vertx, HttpServerRequest request) {
         init(vertx, request);
 
-        if (params.isEmpty() || checkValidation(params).getInteger("result_code") == -1) {
-            request.response().end(checkValidation(params).toString());
+        if (params.isEmpty()) {
+            request.response().end("error 남요");
             return;
         }
 
