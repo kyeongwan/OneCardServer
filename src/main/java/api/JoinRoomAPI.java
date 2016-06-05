@@ -21,7 +21,7 @@ public class JoinRoomAPI extends Base {
             return;
         }
 
-        onExecute(-1, checkValidation(params));
+        onExecute(-2, checkValidation(params));
     }
 
     public void onExecute(int what, JsonObject resultJO) {
@@ -41,7 +41,7 @@ public class JoinRoomAPI extends Base {
                 }
                 int limit = resultJO.getJsonArray("results").getJsonObject(0).getInteger("room_limit");
                 params.put("limit", limit);
-                String query3 = String.format("SELECT * FROM channel_user_list WHERE room_id='%s",
+                String query3 = String.format("SELECT * FROM channel_user_list WHERE room_id='%s'",
                         params.getString("room_id"));
                 selectCustomQuery(-3, query3);
                 break;
@@ -55,13 +55,13 @@ public class JoinRoomAPI extends Base {
                 break;
 
             case -2:
-                String query4 = String.format("SELECT * FROM channel WHERE room_id='%s",
+                String query4 = String.format("SELECT * FROM channel WHERE room_id='%s'",
                         params.getString("room_id"));
                 selectCustomQuery(-1, query4);
                 break;
             case 0:
 
-                if (params.containsKey("channel_pw")) {
+                if (params.containsKey("room_pw")) {
                     String query = String.format("SELECT * FROM channel WHERE room_id='%s' and room_pw='%s'",
                             params.getString("room_id"), params.getString("room_pw"));
                     selectCustomQuery(1, query);
