@@ -104,26 +104,11 @@ public class DBVerticle extends AbstractVerticle {
         IQuery cb = new IQuery(client, msg) {
             @Override
             public void success(SQLConnection con, Object result) {
-                ResultSet rs = (ResultSet)result;
+                int rs = (int)result;
 
-                JsonArray jsonArray =new JsonArray();
-                for(int i = 0; i<rs.getNumRows(); i++){
-                    JsonObject jsonObject = new JsonObject();
-                    JsonArray ja = rs.getResults().get(i);
 
-                    int j = 0;
-                    for(String column : rs.getColumnNames()){
-                        if (ja.getValue(j) instanceof String) {
-                            jsonObject.put(column, ja.getString(j) );
-                        }else {
-                            jsonObject.put(column, ja.getLong(j) );
-                        }
-                        j++;
-                    }
-                    jsonArray.add(jsonObject);
-                }
                 JsonObject response = new JsonObject();
-                response.put("results", jsonArray);
+                response.put("results", rs);
                 response.put("result_code", 0);
                 response.put("result_msg", "update success");
                 reply(response);
