@@ -49,7 +49,7 @@ public class LoginAPI extends Base {
         if (resultJO.getJsonArray("results").size() > 0) {
             rs.put("result_code", 0);
             rs.put("result_msg", "로그인되었습니다.");
-            rs.put("nick_name", resultJO.getString("nick_name"));
+            rs.put("nick_name", resultJO.getJsonArray("results"));
             request.response().end(rs.toString());
         } else {
             rs.put("result_code", -1);

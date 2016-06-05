@@ -20,7 +20,7 @@ public class ListRoomAPI extends Base {
     public void execute(Vertx vertx, HttpServerRequest request) {
         init(vertx, request);
 
-        onExecute(0, params);
+        onExecute(1, params);
     }
 
 
@@ -47,9 +47,9 @@ public class ListRoomAPI extends Base {
                 break;
             case 2:
                 System.out.println(ja.toString());
-                ja = resultJO.getJsonArray("result");
+                ja = resultJO.getJsonArray("results");
                 for (int i = 0; i < ja.size(); i++) {
-                    if (resultJO.getJsonArray("result").getString(i) == null)
+                    if (resultJO.getJsonArray("results  ").getString(i) == null)
                         continue;
                     ja.getJsonObject(i).put("channel_name", new JsonObject(resultJO.getJsonArray("result").getString(i)).getString("room_name"));
                     ja.getJsonObject(i).put("chief_id", new JsonObject(resultJO.getJsonArray("result").getString(i)).getString("room_id"));
