@@ -46,8 +46,9 @@ public class ListRoomAPI extends Base {
 
                 break;
             case 2:
-                System.out.println(ja.toString());
+
                 ja = resultJO.getJsonArray("results");
+                System.out.println(ja.toString());
                 for (int i = 0; i < ja.size(); i++) {
                     if (resultJO.getJsonArray("results  ").getString(i) == null)
                         continue;
@@ -84,8 +85,8 @@ public class ListRoomAPI extends Base {
 
             @Override
             public void handle(AsyncResult<Message<JsonObject>> res) {
-                onExecute(what,  res.result().body());
-                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString() );
+                onExecute(what, res.result().body());
+                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString());
 
             }
         });
