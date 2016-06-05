@@ -50,6 +50,7 @@ public class JoinRoomAPI extends Base {
                     rs.put("result_code" , -1);
                     rs.put("result_msg", "풀방입니다.");
                     request.response().end(rs.toString());
+                    break;
                 }
                 onExecute(0, params);
                 break;
