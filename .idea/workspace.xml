@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JoinRoomAPI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JoinRoomAPI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/api/JoinRoomAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.49614114">
+              <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListRoomAPI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ListRoomAPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/api/ListRoomAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5738636">
-              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+            <state vertical-scroll-proportion="-25.0">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -453,12 +453,12 @@
         <option value="$PROJECT_DIR$/src/main/java/api/JoinAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/ChatVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/GameStartAPI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/api/JoinRoomAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/ListChannelAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/RestVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/MakeRoomAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/LoginAPI.java" />
         <option value="$PROJECT_DIR$/src/main/java/api/ListRoomAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/api/JoinRoomAPI.java" />
       </list>
     </option>
   </component>
@@ -1312,16 +1312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/JoinRoomAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/TestAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1356,8 +1346,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/ListRoomAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5738636">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+        <state vertical-scroll-proportion="-25.0">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/JoinRoomAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49614114">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

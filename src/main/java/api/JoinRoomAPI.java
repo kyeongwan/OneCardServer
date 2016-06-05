@@ -21,7 +21,7 @@ public class JoinRoomAPI extends Base {
             return;
         }
 
-        onExecute(0, checkValidation(params));
+        onExecute(-1, checkValidation(params));
     }
 
     public void onExecute(int what, JsonObject resultJO) {
@@ -33,6 +33,32 @@ public class JoinRoomAPI extends Base {
         JsonObject rs = new JsonObject();
 
         switch (what) {
+            case -1:
+                if(resultJO.getJsonArray("results").size() < 1){
+                    rs.put("result_code" , -1);
+                    rs.put("result_msg", "없는 방입니다.");
+                    request.response().end(rs.toString());
+                }
+                int limit = resultJO.getJsonArray("results").getJsonObject(0).getInteger("room_limit");
+                params.put("limit", limit);
+                String query3 = String.format("SELECT * FROM channel_user_list WHERE room_id='%s",
+                        params.getString("room_id"));
+                selectCustomQuery(-3, query3);
+                break;
+            case -3:
+                if(resultJO.getJsonArray("results").size() > params.getInteger("limit")){
+                    rs.put("result_code" , -1);
+                    rs.put("result_msg", "풀방입니다.");
+                    request.response().end(rs.toString());
+                }
+                onExecute(0, params);
+                break;
+
+            case -2:
+                String query4 = String.format("SELECT * FROM channel WHERE room_id='%s",
+                        params.getString("room_id"));
+                selectCustomQuery(-1, query4);
+                break;
             case 0:
 
                 if (params.containsKey("channel_pw")) {
@@ -60,24 +86,8 @@ public class JoinRoomAPI extends Base {
                 insertCustomQuery(2, query2);
                 break;
 
-            case 2:
 
-//		 	JsonObject user_info = new JsonObject();
-//		 	user_info.put("user_id", params.getString("user_id"));
-//		 	user_info.put("gcm_id", params.getString("gcm_id"));
-//		 	user_info.put("user_nick", params.getString("user_nick"));
-//		 	user_info.put("user_color", "#FFE400");
-//
-//			JsonObject jo2 = new JsonObject();
-//			jo2.put("key", "users:"+params.getString("channel_id"));
-//			jo2.put("value", params.getString("user_id")+","+params.getString("gcm_id")+","+params.getString("user_nick")+",#FFE400");
-//			saddRedis(this, Config.saddRedis, jo2);
-//
-//			JsonObject table2 = new JsonObject();
-//		 	table2.put("key","ch:"+user_id+":"+channel_id);
-//		 	table2.put("value",user_info);
-//		 	setRedis(this, Config.setRedis, table2);
-//
+            case 2:
                 rs.put("result_code", 0);
                 rs.put("result_msg", "채널에 입장하였습니다.");
 
@@ -117,9 +127,9 @@ public class JoinRoomAPI extends Base {
 
     public JsonObject checkValidation(JsonObject params) {
         JsonObject res = new JsonObject();
-        if (!params.containsKey("channel_id") || params.getString("channel_id").isEmpty() || params.getString("channel_id").equals("")) {
+        if (!params.containsKey("room_id") || params.getString("room_id").isEmpty() || params.getString("room_id").equals("")) {
             res.put("result_code", -1);
-            res.put("result_msg", "채널을 선택해주세요.");
+            res.put("result_msg", "방을 선택해주세요.");
             return res;
         }
         if (!params.containsKey("user_nick") || params.getString("user_nick").isEmpty() || params.getString("user_nick").equals("")) {
