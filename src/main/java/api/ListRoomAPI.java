@@ -50,8 +50,6 @@ public class ListRoomAPI extends Base {
                 ja = resultJO.getJsonArray("results");
                 System.out.println(ja.toString());
                 for (int i = 0; i < ja.size(); i++) {
-                    if (resultJO.getJsonArray("results").getString(i) == null)
-                        continue;
                     ja.getJsonObject(i).put("room_name", new JsonObject(resultJO.getJsonArray("result").getString(i)).getString("room_name"));
                     ja.getJsonObject(i).put("room_id", new JsonObject(resultJO.getJsonArray("result").getString(i)).getString("room_id"));
                     ja.getJsonObject(i).put("is_private", new JsonObject(resultJO.getJsonArray("result").getString(i)).getString("is_private"));
