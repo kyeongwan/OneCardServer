@@ -68,7 +68,7 @@ public class DBVerticle extends AbstractVerticle {
          sbNames.deleteCharAt(sbNames.length()-1);
          sbValues.deleteCharAt(sbValues.length()-1);
 
-         String query = String.format(json.getString("question")+" INTO %s (%s) VALUES(%s)", json.getString("table_name"), sbNames, sbValues);
+         String query = String.format(json.getString("question") + " INTO %s (%s) VALUES(%s)", json.getString("table_name"), sbNames, sbValues);
          cb.execute(query);
         
     }
@@ -98,6 +98,40 @@ public class DBVerticle extends AbstractVerticle {
         	
          
          cb.execute(str);
+    }
+
+    void updateCustomQuery(Message<String> msg){
+        IQuery cb = new IQuery(client, msg) {
+            @Override
+            public void success(SQLConnection con, Object result) {
+                ResultSet rs = (ResultSet)result;
+
+                JsonArray jsonArray =new JsonArray();
+                for(int i = 0; i<rs.getNumRows(); i++){
+                    JsonObject jsonObject = new JsonObject();
+                    JsonArray ja = rs.getResults().get(i);
+
+                    int j = 0;
+                    for(String column : rs.getColumnNames()){
+                        if (ja.getValue(j) instanceof String) {
+                            jsonObject.put(column, ja.getString(j) );
+                        }else {
+                            jsonObject.put(column, ja.getLong(j) );
+                        }
+                        j++;
+                    }
+                    jsonArray.add(jsonObject);
+                }
+                JsonObject response = new JsonObject();
+                response.put("results", jsonArray);
+                response.put("result_code", 0);
+                response.put("result_msg", "update success");
+                reply(response);
+            }
+        };
+
+        String str = msg.body();
+        cb.execute(str);
     }
 
     void selectCustomQuery(Message<String> msg) {
@@ -251,7 +285,13 @@ public class DBVerticle extends AbstractVerticle {
                 selectCustomQuery(objectMessage);
             }
         });
-        
+        eb.consumer("to.DBVerticle.updateCustomQuery", new Handler<Message<String>>() {
+            @Override
+            public void handle(Message<String> objectMessage) {
+                updateCustomQuery(objectMessage);
+            }
+        });
+
         eb.consumer("to.DBVerticle.selectCustomQuery2", new Handler<Message<String>>() {
             @Override
             public void handle(Message<String> objectMessage) {
