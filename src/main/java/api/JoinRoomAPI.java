@@ -91,7 +91,7 @@ public class JoinRoomAPI extends Base {
             case 2:
 
                 String query5 = String.format("UPDATE channel set user_cnt = '%d' WHERE room_id='%s'",
-                        params.getInteger("cnt") + 1,params.getString("room_id"));
+                        (Integer.parseInt(params.getString("cnt")) + 1),params.getString("room_id"));
 
                 updateCustomQuery(3, query5);
 
