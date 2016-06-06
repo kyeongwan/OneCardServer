@@ -55,6 +55,36 @@ public class ListRoomAPI extends Base {
                     //ja.getJsonObject(i).put("is_private", (resultJO.getJsonArray("results").getJsonObject(i).getString("is_private")));
                 }
 
+                JsonArray js = new JsonArray();
+                int start_index;
+                int end_index;
+                if(!params.containsKey("start_index")){
+                    start_index = 0;
+                }else{
+                    start_index = params.getInteger("start_index");
+                }
+                if(!params.containsKey("end_index")){
+                    end_index = 6;
+                }else {
+                    end_index = params.getInteger("end_index");
+                }
+
+                if(ja.size() < start_index){
+                    JsonObject res = new JsonObject();
+                    res.put("result_code", -1);
+                    res.put("result_msg", "맨 끝입니다.");
+                    request.response().end(res.toString());
+                    break;
+                }
+
+                if(ja.size() < end_index + 1){
+                    end_index = ja.size() - 1;
+                }
+
+                for(int i=0; i< end_index - start_index; i++){
+                    js.add(ja.getJsonObject(start_index + i));
+                }
+
                 rs.put("result_code", 0);
                 rs.put("result_msg", "채널 리스트 입니다.");
                 rs.put("list_channel", ja);
