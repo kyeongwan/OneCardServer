@@ -119,8 +119,9 @@ public class GameStartAPI extends Base {
                     });
                 }
                 JsonObject json = new JsonObject();
-                json.put("size", list.size());
-                for(int i=0; i<list.size(); i++){
+                int size = list.size();
+                json.put("size", size);
+                for(int i=0; i<size; i++){
                     json.put("card" + i, list.poll());
                 }
                 JsonObject c = new JsonObject();
