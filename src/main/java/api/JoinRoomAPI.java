@@ -97,6 +97,13 @@ public class JoinRoomAPI extends Base {
                 break;
 
             case 3:
+                String query10 = String.format("SELECT * FROM room_user_list WHERE room_id='%s'",
+                        params.getString("room_id"));
+                selectCustomQuery(4, query10);
+                break;
+
+            case 4:
+                rs.put("user_list",resultJO.getJsonArray("results"));
                 rs.put("result_code", 0);
                 rs.put("result_msg", "채널에 입장하였습니다.");
 
