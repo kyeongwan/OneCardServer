@@ -61,12 +61,12 @@ public class ListRoomAPI extends Base {
                 if(!params.containsKey("start_index")){
                     start_index = 0;
                 }else{
-                    start_index = params.getInteger("start_index");
+                    start_index = Integer.parseInt(params.getString("start_index"));
                 }
                 if(!params.containsKey("end_index")){
                     end_index = 6;
                 }else {
-                    end_index = params.getInteger("end_index");
+                    end_index = Integer.parseInt(params.getString("end_index"));
                 }
 
                 if(ja.size() < start_index){
