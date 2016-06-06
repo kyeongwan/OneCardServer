@@ -119,6 +119,7 @@ public class ChatVerticle extends AbstractVerticle {
             }
     	});
 
+
         eb.consumer("to.ChatVerticle.gamestart", new Handler<Message<JsonObject>>() {
             @Override
             public void handle(Message<JsonObject> event) {
@@ -131,7 +132,21 @@ public class ChatVerticle extends AbstractVerticle {
                 eb.publish("to.channel." + room_id, data.toString());
             }
         });
-    	
+
+        eb.consumer("to.ChatVerticle.gamestart_Qcard", new Handler<Message<JsonObject>>() {
+            @Override
+            public void handle(Message<JsonObject> event) {
+
+                JsonObject json = event.body();
+                String room_id = json.getString("room_id");
+                JsonObject data = json.getJsonObject("data");
+                data.put("type", "system_Qcard");
+                event.reply(event.body());
+                eb.publish("to.channel." + room_id, data.toString());
+            }
+        });
+
+
         eb.consumer("to.ChatVerticle.permit",new Handler<Message<String>>() {	// 방이 생성되었을 떄 퍼미션 설정
             @Override
             public void handle(Message<String> objectMessage) {

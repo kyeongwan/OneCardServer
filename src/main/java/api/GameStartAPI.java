@@ -118,6 +118,23 @@ public class GameStartAPI extends Base {
                         }
                     });
                 }
+                JsonObject json = new JsonObject();
+                json.put("size", list.size());
+                for(int i=0; i<list.size(); i++){
+                    json.put("card" + i, list.poll());
+                }
+                JsonObject c = new JsonObject();
+                c.put("room_id", params.getString("room_id"));
+                c.put("data", json);
+
+                vertx.eventBus().send("to.ChatVerticle.gamestart_Qcard", c, new Handler<AsyncResult<Message<JsonObject>>>() {
+
+                    @Override
+                    public void handle(AsyncResult<Message<JsonObject>> res) {
+                        System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString());
+                    }
+                });
+
                 JsonObject rs = new JsonObject();
 
                 rs.put("result_code", 0);
