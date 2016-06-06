@@ -69,17 +69,19 @@ public class ListRoomAPI extends Base {
                     end_index = Integer.parseInt(params.getString("end_index"));
                 }
 
-                if(ja.size() < start_index){
-                    JsonObject res = new JsonObject();
-                    res.put("result_code", -1);
-                    res.put("result_msg", "맨 끝입니다.");
-                    request.response().end(res.toString());
-                    break;
-                }
+
 
                 if(ja.size() < end_index + 1){
                     end_index = ja.size() - 1;
                 }
+
+                if(start_index > end_index)
+                    start_index = end_index;
+
+//
+//                if(ja.size() < start_index + 1){
+//                    start_index
+//                }
 
                 for(int i=0; i< end_index - start_index; i++){
                     js.add(ja.getJsonObject(start_index + i));
