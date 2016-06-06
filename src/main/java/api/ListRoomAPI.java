@@ -96,15 +96,7 @@ public class ListRoomAPI extends Base {
                 request.response().end(rs.toString());
                 break;
             case 3:
-                for (int i = 0; i < ja.size(); i++) {
-                    ja.getJsonObject(i).put("channel_name", resultJO.getJsonArray("results").getJsonObject(i).getString("channel_name"));
-                    ja.getJsonObject(i).put("channel_cate", resultJO.getJsonArray("results").getJsonObject(i).getString("channel_cate"));
-                }
 
-                rs.put("result_code", 0);
-                rs.put("result_msg", "채널 리스트 입니다.");
-                rs.put("list_channel", ja);
-                request.response().end(rs.toString());
 
                 break;
         }

@@ -52,6 +52,7 @@ public class JoinRoomAPI extends Base {
                     request.response().end(rs.toString());
                     break;
                 }
+                params.put("cnt", resultJO.getJsonArray("results").size());
                 onExecute(0, params);
                 break;
 
@@ -87,8 +88,14 @@ public class JoinRoomAPI extends Base {
                 insertCustomQuery(2, query2);
                 break;
 
-
             case 2:
+
+                String query5 = String.format("UPDATE channel set user_cnt = '%d' WHERE room_id='%s'",
+                        params.getInteger("cnt") + 1,params.getString("room_id"));
+
+                updateCustomQuery(3, query5);
+
+            case 3:
                 rs.put("result_code", 0);
                 rs.put("result_msg", "채널에 입장하였습니다.");
 
@@ -116,6 +123,20 @@ public class JoinRoomAPI extends Base {
         System.out.println(what + " insertQuery execute");
 
         vertx.eventBus().send("to.DBVerticle.insertCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
+
+            @Override
+            public void handle(AsyncResult<Message<JsonObject>> res) {
+                onExecute(what, res.result().body());
+                System.out.println(getClass().getName() + " onExecute : " + res.result().body().toString());
+
+            }
+        });
+    }
+
+    public void updateCustomQuery(int what, String query) {
+        System.out.println(what + " selectQuery execute");
+
+        vertx.eventBus().send("to.DBVerticle.updateCustomQuery", query, new Handler<AsyncResult<Message<JsonObject>>>() {
 
             @Override
             public void handle(AsyncResult<Message<JsonObject>> res) {
