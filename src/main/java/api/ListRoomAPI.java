@@ -75,13 +75,15 @@ public class ListRoomAPI extends Base {
                     end_index = ja.size() - 1;
                 }
 
-                if(start_index > end_index)
+                if(start_index > end_index) {
                     start_index = end_index;
+                }
 
-//
-//                if(ja.size() < start_index + 1){
-//                    start_index
-//                }
+
+                if(ja.size() < start_index + 1){
+                    start_index = 9999;
+                    end_index = 9999;
+                }
 
                 for(int i=0; i< end_index - start_index; i++){
                     js.add(ja.getJsonObject(start_index + i));
